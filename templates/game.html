@@ -77,13 +77,15 @@
         }
     </script> 
     
-        {% if inv_type == 'Pilha' %}
-            <script src="{{ url_for('static', filename='js/PilhaInventory.js') }}"></script>
-        {% elif inv_type == 'Fila' %}
-            <script src="{{ url_for('static', filename='js/FilaInventory.js') }}"></script>
-        {% elif inv_type == 'Tabela Hash' %}
-            <script src="{{ url_for('static', filename='js/TabelaHashInventory.js') }}"></script>
-        {% endif %}
+    {% if inv_type == 'Pilha' %}
+        <script src="{{ url_for('static', filename='js/PilhaInventory.js') }}"></script>
+    {% elif inv_type == 'Fila' %}
+        <script src="{{ url_for('static', filename='js/FilaInventory.js') }}"></script>
+    {% elif inv_type == 'Tabela Hash' %}
+        <script src="{{ url_for('static', filename='js/TabelaHashInventory.js') }}"></script>
+    {% elif inv_type == 'Árvore' %}
+        <script src="{{ url_for('static', filename='js/ArvoreInventory.js') }}"></script>
+    {% endif %}
 
     <script src="{{ url_for('static', filename='js/ui_controller.js') }}"></script>
 

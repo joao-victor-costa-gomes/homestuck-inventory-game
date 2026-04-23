@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (inventoryType === 'Tabela Hash' && typeof TabelaHashInventory !== 'undefined') {
         inventorySystem = new TabelaHashInventory();
     }
+    else if (inventoryType === 'Árvore' && typeof ArvoreInventory !== 'undefined') {
+        inventorySystem = new ArvoreInventory();
+    }
 
     let selectedSlot = null; // Guarda o item clicado enquanto o modal está aberto
 
@@ -88,9 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // ==========================================
-    // CONTROLES DO MODAL (TABELA HASH)
-    // ==========================================
     const btnHashAdd = document.getElementById('btn-hash-add');
     if (btnHashAdd) {
         btnHashAdd.addEventListener('click', () => {
