@@ -1,0 +1,12 @@
+bolsa=2
+corda=3
+cesta=4
+cruz=1
+lampiao=5
+martelo=8
+pa=6
+picareta=7
+pocao_cura=2
+pocao_mana=2
+tocha=3
+vela=1

@@ -86,14 +86,18 @@
             }
         }
 
-        function select(name, type) {
-            fetch('/select_character', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({character: name, type: type})
-            }).then(response => {
-                alert("Você escolheu " + name + "! O Sylladex funcionará como " + type);
-            });
+            function select(name, type) {
+            // Mapeia o nome curto para o nome completo correspondente no dicionário do Flask
+            const fullNames = {
+                'John': 'John Egbert',
+                'Rose': 'Rose Lalonde',
+                'Dave': 'Dave Strider',
+                'Jade': 'Jade Harley'
+            };
+            // Pega o nome completo (ou usa o nome original como precaução)
+            const fullName = fullNames[name] || name;
+            // Monta a UrL e redireciona o navegador para a tela do jogo
+            window.location.href = `/game?character=${encodeURIComponent(fullName)}&type=${encodeURIComponent(type)}`;
         }
     </script>
 </body>

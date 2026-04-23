@@ -120,3 +120,109 @@ h1 {
     letter-spacing: 2px;
     font-family: 'FontStuck', 'Courier New', Courier, monospace;
 }
+
+.game-body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'FontStuck', 'Courier New', Courier, monospace;
+}
+
+.split-screen {
+    display: flex;
+    height: 100%;
+}
+
+.left-panel, .right-panel {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+}
+
+.divider {
+    width: 6px;
+    background-color: #000;
+    height: 100%;
+}
+
+#inventory-container, #items-grid {
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+#inventory-container {
+    border: 2px dashed #ccc; 
+}
+
+.left-panel h2 {
+    margin-bottom: 2px; 
+}
+
+.left-panel p {
+    margin-top: 0;
+    font-size: 1.2rem; 
+}
+
+/* Container da grade de itens */
+#items-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 110px); /* Tamanho fixo menor para os quadrados */
+    justify-content: center; /* Centraliza a grade no painel direito */
+    gap: 15px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Estilo de cada quadradinho atualizado */
+.item-slot {
+    aspect-ratio: 1 / 1.2; /* Deixa o card levemente retangular para caber os textos */
+    border: 3px solid #000;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column; /* Organiza nome, imagem e peso em coluna */
+    align-items: center;
+    justify-content: space-between; /* Distribui os 3 elementos com espaço igual */
+    padding: 8px;
+    cursor: pointer;
+    transition: transform 0.1s;
+    text-align: center;
+}
+
+.item-slot:hover {
+    transform: scale(1.05);
+    border-color: #666;
+}
+
+/* Ajuste da imagem para dar espaço aos textos */
+.item-slot img {
+    max-width: 80%;
+    max-height: 45px; /* Altura máxima controlada */
+    object-fit: contain;
+}
+
+/* Estilos das fontes dos itens */
+.item-name {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: capitalize; /* Deixa a primeira letra do item maiúscula */
+}
+
+.item-weight {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Esconde o texto padrão a menos que a imagem não carregue */
+.fallback-text {
+    display: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    word-break: break-word;
+}

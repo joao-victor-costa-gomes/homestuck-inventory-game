@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Sylladex - {{ character }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="game-body">
+
+    <audio id="bg-music" loop autoplay>
+        <source src="{{ url_for('static', filename='audio/music.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <div class="audio-control" onclick="toggleMute()">
+        <span id="mute-icon" style="font-size: 24px;">🔊</span>
+    </div>
+
+    <div class="split-screen">
+        <div class="left-panel">
+            <h2>Inventário de <span style="color: {{ color }};">{{ character }}</span></h2>
+            <p>Tipo: {{ inv_type }}</p>
+            
+            <div id="inventory-container" data-type="{{ inv_type }}">
+                </div>
+        </div>
+        
+        <div class="divider"></div>
+
+        <div class="right-panel">
+            <h2>Itens Selecionáveis</h2>
+            
+            <div id="items-grid">
+                {% for item in items %}
+                <div class="item-slot" data-name="{{ item.name }}" data-weight="{{ item.weight }}">
+                    <span class="item-name">{{ item.name }}</span>
+                    
+                    <img src="{{ url_for('static', filename='img/itens/' ~ item.img_filename) }}"
+                         alt="{{ item.name }}"
+                         onerror="this.style.display='none';">
+                    
+                    <span class="item-weight">Peso: {{ item.weight }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const music = document.getElementById('bg-music');
+        const icon = document.getElementById('mute-icon');
+
+        function toggleMute() {
+            if (music.muted) {
+                music.muted = false;
+                icon.innerText = '🔊';
+            } else {
+                music.muted = true;
+                icon.innerText = '🔇';
+            }
+        }
+    </script>
+</body>
+</html>

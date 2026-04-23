@@ -1,19 +1,45 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
+import os
 
 app = Flask(__name__)
 
-# Rota principal que carrega a tela de seleção de personagens
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# Rota preparada para receber a escolha do personagem e iniciar o jogo
-@app.route('/select_character', methods=['POST'])
-def select_character():
-    data = request.json
-    character = data.get('character')
-    inventory_type = data.get('type')
-    return jsonify({"status": "success", "redirect": "/game"})
+@app.route('/game')
+def game():
+    character = request.args.get('character', 'John Egbert')
+    inv_type = request.args.get('type', 'Pilha')
+
+    colors = {
+        'John Egbert': '#0715cd',
+        'Rose Lalonde': '#b536da',
+        'Dave Strider': '#e00707',
+        'Jade Harley': '#4ac925'
+    }
+    char_color = colors.get(character, '#000000')
+    
+    # Lógica de leitura do arquivo de texto
+    items_list = []
+    filepath = 'itens.txt'
+    
+    if os.path.exists(filepath):
+        with open(filepath, 'r', encoding='utf-8') as file:
+            for line in file:
+                if '=' in line:
+                    name, weight = line.strip().split('=')
+                    items_list.append({
+                        'name': name,
+                        'weight': int(weight),
+                        'img_filename': f"{name}.png"
+                    })
+
+    return render_template('game.html', 
+                           character=character, 
+                           inv_type=inv_type, 
+                           color=char_color, 
+                           items=items_list)
 
 if __name__ == '__main__':
     app.run(debug=True)
