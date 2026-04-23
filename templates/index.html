@@ -24,6 +24,7 @@
     <h1 style="text-align: center; font-family: 'FontStuck', sans-serif;">ESCOLHA SEU PERSONAGEM</h1>
 
     <div class="selection-container">
+        
         <div class="char-card" onclick="select('John', 'Pilha')">
             <div class="sprite-container john">
                 <div class="sprite base" style="background-image: url('{{ url_for('static', filename='img/john_base.png') }}');"></div>
@@ -31,6 +32,15 @@
             </div>
             <h3>John Egbert</h3>
             <p>Inventário: [Pilha]</p>
+        </div>
+
+        <div class="char-card" onclick="select('Jade', 'Fila')">
+            <div class="sprite-container jade">
+                <div class="sprite base" style="background-image: url('{{ url_for('static', filename='img/jade_base.png') }}');"></div>
+                <div class="sprite alt" style="background-image: url('{{ url_for('static', filename='img/jade_alt.png') }}');"></div>
+            </div>
+            <h3>Jade Harley</h3>
+            <p>Inventário: [Fila]</p>
         </div>
 
         <div class="char-card" onclick="select('Rose', 'Árvore')">
@@ -51,14 +61,6 @@
             <p>Inventário: [Tabela Hash]</p>
         </div>
 
-        <div class="char-card" onclick="select('Jade', 'Fila')">
-            <div class="sprite-container jade">
-                <div class="sprite base" style="background-image: url('{{ url_for('static', filename='img/jade_base.png') }}');"></div>
-                <div class="sprite alt" style="background-image: url('{{ url_for('static', filename='img/jade_alt.png') }}');"></div>
-            </div>
-            <h3>Jade Harley</h3>
-            <p>Inventário: [Fila]</p>
-        </div>
     </div>
 
     <script>

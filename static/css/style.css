@@ -1,4 +1,3 @@
-/* Importação da fonte customizada do jogo */
 @font-face {
     font-family: 'FontStuck';
     src: url('../fonts/fontstuck.ttf') format('opentype');
@@ -23,14 +22,13 @@ h1 {
     text-align: center;
     cursor: pointer;
     transition: transform 0.2s;
-    width: 215px; /* Ajustado proporcionalmente para a nova altura */
+    width: 215px; 
 }
 
 .char-card:hover { 
     transform: scale(1.05); 
 }
 
-/* Redução da altura para 500px conforme solicitado */
 .sprite-container {
     width: 215px;
     height: 400px;
@@ -52,13 +50,11 @@ h1 {
 .char-card:hover .sprite.base { display: none; }
 .char-card:hover .sprite.alt { display: block; }
 
-/* Cores de fundo mantidas */
 .john { background-color: #0715cd; color: white; }
 .rose { background-color: #b536da; color: white; }
 .dave { background-color: #e00707; color: white; }
 .jade { background-color: #4ac925; color: white; }
 
-/* Posicionamento fixo do botão de áudio no canto inferior direito */
 .audio-control {
     position: fixed;
     bottom: 20px;
@@ -85,7 +81,6 @@ h1 {
     height: 25px;
 }
 
-/* Tela de sobreposição para permitir o autoplay */
 #overlay {
     position: fixed;
     top: 0; left: 0;
@@ -111,12 +106,11 @@ h1 {
     display: none !important;
 }
 
-/* Estilo da assinatura na tela de início */
 .overlay-signature {
     position: absolute;
-    bottom: 30px; /* Mantém uma margem segura do final da tela */
+    bottom: 30px; 
     font-size: 1rem;
-    color: #fcce00; /* Um cinza médio para não roubar a atenção do clique principal */
+    color: #fcce00; 
     letter-spacing: 2px;
     font-family: 'FontStuck', 'Courier New', Courier, monospace;
 }
@@ -170,25 +164,23 @@ h1 {
     font-size: 1.2rem; 
 }
 
-/* Container da grade de itens */
 #items-grid {
     display: grid;
-    grid-template-columns: repeat(4, 110px); /* Tamanho fixo menor para os quadrados */
-    justify-content: center; /* Centraliza a grade no painel direito */
+    grid-template-columns: repeat(4, 110px); 
+    justify-content: center; 
     gap: 15px;
     width: 100%;
     margin-top: 20px;
 }
 
-/* Estilo de cada quadradinho atualizado */
 .item-slot {
-    aspect-ratio: 1 / 1.2; /* Deixa o card levemente retangular para caber os textos */
+    aspect-ratio: 1 / 1.2; 
     border: 3px solid #000;
     background-color: #fff;
     display: flex;
-    flex-direction: column; /* Organiza nome, imagem e peso em coluna */
+    flex-direction: column; 
     align-items: center;
-    justify-content: space-between; /* Distribui os 3 elementos com espaço igual */
+    justify-content: space-between; 
     padding: 8px;
     cursor: pointer;
     transition: transform 0.1s;
@@ -200,18 +192,16 @@ h1 {
     border-color: #666;
 }
 
-/* Ajuste da imagem para dar espaço aos textos */
 .item-slot img {
     max-width: 80%;
-    max-height: 45px; /* Altura máxima controlada */
+    max-height: 45px; 
     object-fit: contain;
 }
 
-/* Estilos das fontes dos itens */
 .item-name {
     font-size: 1rem;
     font-weight: bold;
-    text-transform: capitalize; /* Deixa a primeira letra do item maiúscula */
+    text-transform: capitalize; 
 }
 
 .item-weight {
@@ -219,7 +209,6 @@ h1 {
     color: #555;
 }
 
-/* Esconde o texto padrão a menos que a imagem não carregue */
 .fallback-text {
     display: none;
     font-size: 0.9rem;
@@ -227,17 +216,15 @@ h1 {
     word-break: break-word;
 }
 
-/* Container dos botões de controle do inventário */
 .inventory-controls {
     display: flex;
     gap: 10px;
     margin-top: 5px;
     margin-bottom: 20px;
-    flex-wrap: wrap; /* Garante que os botões não quebrem o layout se a tela for menor */
+    flex-wrap: wrap; 
     justify-content: center;
 }
 
-/* Estilo individual de cada botão */
 .ctrl-btn {
     font-family: 'FontStuck', 'Courier New', Courier, monospace;
     background-color: #fff;
@@ -252,18 +239,16 @@ h1 {
 .ctrl-btn:hover {
     background-color: #000;
     color: #fff;
-    transform: scale(1.05); /* Mantém a mesma animação de clique dos itens */
+    transform: scale(1.05); 
 }
 
-/* Estilo para os itens quando estão dentro do inventário */
 #inventory-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px; /* Espaço vertical entre os itens empilhados */
+    gap: 10px; 
 }
 
-/* Tira o efeito de hover/zoom quando o item já está no inventário */
 #inventory-container .item-slot {
     cursor: default;
 }
@@ -273,28 +258,45 @@ h1 {
     border-color: #000;
 }
 
-/* Fixa um tamanho menor e quadrado para o card */
 #inventory-container .item-slot {
     width: 70px;
     height: 70px;
-    aspect-ratio: auto; /* Anula a proporção retangular anterior */
+    aspect-ratio: auto; 
     padding: 5px;
-    justify-content: space-evenly; /* Distribui o nome e a imagem no centro */
+    justify-content: space-evenly; 
 }
 
-/* Esconde completamente o peso */
 #inventory-container .item-weight {
     display: none;
 }
 
-/* Diminui a fonte do nome para caber no novo quadrado */
 #inventory-container .item-name {
     font-size: 0.9rem;
     margin-bottom: 2px;
 }
 
-/* Ajusta o tamanho da imagem proporcionalmente */
 #inventory-container .item-slot img {
     max-width: 90%;
     max-height: 40px;
+}
+
+#inventory-container[data-type="Fila"] {
+    flex-direction: row; 
+    flex-wrap: wrap;    
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+.queue-arrow {
+    font-family: 'FontStuck', 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #000;
+    user-select: none; 
+}
+
+#inventory-container[data-type="Fila"] .item-slot {
+    margin: 5px 0;
 }

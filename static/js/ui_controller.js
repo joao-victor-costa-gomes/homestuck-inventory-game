@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
         inventorySystem = new PilhaInventory();
     } 
 
+    else if (inventoryType === 'Fila' && typeof FilaInventory !== 'undefined') {
+        inventorySystem = new FilaInventory();
+    }
+
     // Evento: Adicionar item ao inventário
     document.querySelectorAll('#items-grid .item-slot').forEach(slot => {
         slot.addEventListener('click', function() {
