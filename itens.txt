@@ -10,3 +10,6 @@ pocao_cura=2
 pocao_mana=2
 tocha=3
 vela=1
+cuscuz=3
+emapada=1
+buchada=1

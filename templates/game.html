@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Sylladex - {{ character }}</title>
+    <title>Inventário - {{ character }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="game-body">
@@ -19,6 +19,12 @@
         <div class="left-panel">
             <h2>Inventário de <span style="color: {{ color }};">{{ character }}</span></h2>
             <p>Tipo: {{ inv_type }}</p>
+
+            <div class="inventory-controls">
+                <button class="ctrl-btn" id="btn-remove">Remover Item</button>
+                <button class="ctrl-btn" id="btn-clear">Limpar Inventário</button>
+                <button class="ctrl-btn" id="btn-switch">Trocar de Personagem</button>
+            </div>
             
             <div id="inventory-container" data-type="{{ inv_type }}">
                 </div>
@@ -58,6 +64,12 @@
                 icon.innerText = '🔇';
             }
         }
-    </script>
+    </script> {% if inv_type == 'Pilha' %}
+        <script src="{{ url_for('static', filename='js/PilhaInventory.js') }}"></script>
+    {% elif inv_type == 'Fila' %}
+        {% endif %}
+
+    <script src="{{ url_for('static', filename='js/ui_controller.js') }}"></script>
+
 </body>
 </html>
