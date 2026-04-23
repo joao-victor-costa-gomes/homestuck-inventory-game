@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Homestuck Inventory Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div id="overlay" onclick="startApp()">
+        <h2>JOGO DE INVENTÁRIO DE HOMESTUCK</h2>
+        <p>CLIQUE PARA INICIAR</p>
+        <span class="overlay-signature">Feito por João Victor da Costa Gomes</span>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="{{ url_for('static', filename='audio/music.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <div class="audio-control" onclick="toggleMute()">
+        <span id="mute-icon" style="font-size: 24px;">🔊</span>
+    </div>
+
+    <h1 style="text-align: center; font-family: 'FontStuck', sans-serif;">ESCOLHA SEU PERSONAGEM</h1>
+
+    <div class="selection-container">
+        <div class="char-card" onclick="select('John', 'Pilha')">
+            <div class="sprite-container john">
+                <div class="sprite base" style="background-image: url('{{ url_for('static', filename='img/john_base.png') }}');"></div>
+                <div class="sprite alt" style="background-image: url('{{ url_for('static', filename='img/john_alt.png') }}');"></div>
+            </div>
+            <h3>John Egbert</h3>
+            <p>Inventário: [Pilha]</p>
+        </div>
+
+        <div class="char-card" onclick="select('Rose', 'Árvore')">
+            <div class="sprite-container rose">
+                <div class="sprite base" style="background-image: url('{{ url_for('static', filename='img/rose_base.png') }}');"></div>
+                <div class="sprite alt" style="background-image: url('{{ url_for('static', filename='img/rose_alt.png') }}');"></div>
+            </div>
+            <h3>Rose Lalonde</h3>
+            <p>Inventário: [Árvore]</p>
+        </div>
+
+        <div class="char-card" onclick="select('Dave', 'Tabela Hash')">
+            <div class="sprite-container dave">
+                <div class="sprite base" style="background-image: url('{{ url_for('static', filename='img/dave_base.png') }}');"></div>
+                <div class="sprite alt" style="background-image: url('{{ url_for('static', filename='img/dave_alt.png') }}');"></div>
+            </div>
+            <h3>Dave Strider</h3>
+            <p>Inventário: [Tabela Hash]</p>
+        </div>
+
+        <div class="char-card" onclick="select('Jade', 'Fila')">
+            <div class="sprite-container jade">
+                <div class="sprite base" style="background-image: url('{{ url_for('static', filename='img/jade_base.png') }}');"></div>
+                <div class="sprite alt" style="background-image: url('{{ url_for('static', filename='img/jade_alt.png') }}');"></div>
+            </div>
+            <h3>Jade Harley</h3>
+            <p>Inventário: [Fila]</p>
+        </div>
+    </div>
+
+    <script>
+        const music = document.getElementById('bg-music');
+        const icon = document.getElementById('mute-icon');
+        const overlay = document.getElementById('overlay');
+
+        // Função que remove o overlay e inicia a música simultaneamente
+        function startApp() {
+            music.play().then(() => {
+                overlay.classList.add('hidden');
+            }).catch(error => {
+                console.log("Autoplay bloqueado pelo navegador. Aguardando interação.");
+                overlay.classList.add('hidden');
+            });
+        }
+
+        function toggleMute() {
+            if (music.muted) {
+                music.muted = false;
+                icon.innerText = '🔊';
+            } else {
+                music.muted = true;
+                icon.innerText = '🔇';
+            }
+        }
+
+        function select(name, type) {
+            fetch('/select_character', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({character: name, type: type})
+            }).then(response => {
+                alert("Você escolheu " + name + "! O Sylladex funcionará como " + type);
+            });
+        }
+    </script>
+</body>
+</html>

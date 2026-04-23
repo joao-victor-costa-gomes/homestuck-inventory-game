@@ -1,0 +1,122 @@
+/* Importação da fonte customizada do jogo */
+@font-face {
+    font-family: 'FontStuck';
+    src: url('../fonts/fontstuck.ttf') format('opentype');
+}
+
+h1 {
+    text-align: center;
+    font-family: 'FontStuck', 'Courier New', Courier, monospace;
+    margin-bottom: 5px; 
+    margin-top: 20px;
+}
+
+.selection-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 30px; 
+    font-family: 'FontStuck', 'Courier New', Courier, monospace;
+}
+
+.char-card {
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: 215px; /* Ajustado proporcionalmente para a nova altura */
+}
+
+.char-card:hover { 
+    transform: scale(1.05); 
+}
+
+/* Redução da altura para 500px conforme solicitado */
+.sprite-container {
+    width: 215px;
+    height: 400px;
+    position: relative;
+    margin-bottom: 10px;
+    border: 4px solid #000;
+}
+
+.sprite {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.sprite.alt { display: none; }
+.char-card:hover .sprite.base { display: none; }
+.char-card:hover .sprite.alt { display: block; }
+
+/* Cores de fundo mantidas */
+.john { background-color: #0715cd; color: white; }
+.rose { background-color: #b536da; color: white; }
+.dave { background-color: #e00707; color: white; }
+.jade { background-color: #4ac925; color: white; }
+
+/* Posicionamento fixo do botão de áudio no canto inferior direito */
+.audio-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.audio-control:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.audio-control img {
+    width: 25px;
+    height: 25px;
+}
+
+/* Tela de sobreposição para permitir o autoplay */
+#overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    cursor: pointer;
+    font-family: 'FontStuck', sans-serif;
+    font-size: 30px;
+}
+
+#overlay h2 {
+    font-size: 3rem;
+    margin-bottom: 5px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Estilo da assinatura na tela de início */
+.overlay-signature {
+    position: absolute;
+    bottom: 30px; /* Mantém uma margem segura do final da tela */
+    font-size: 1rem;
+    color: #fcce00; /* Um cinza médio para não roubar a atenção do clique principal */
+    letter-spacing: 2px;
+    font-family: 'FontStuck', 'Courier New', Courier, monospace;
+}
