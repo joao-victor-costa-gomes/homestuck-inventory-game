@@ -7,6 +7,17 @@
 </head>
 <body class="game-body">
 
+    <div id="hash-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h3>Definir Chave (Index)</h3>
+            <input type="number" id="hash-key-input" placeholder="Digite um número...">
+            <div class="modal-buttons">
+                <button id="btn-hash-add" class="ctrl-btn">Adicionar</button>
+                <button id="btn-hash-cancel" class="ctrl-btn">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
     <audio id="bg-music" loop autoplay>
         <source src="{{ url_for('static', filename='audio/music.mp3') }}" type="audio/mpeg">
     </audio>
@@ -70,6 +81,8 @@
             <script src="{{ url_for('static', filename='js/PilhaInventory.js') }}"></script>
         {% elif inv_type == 'Fila' %}
             <script src="{{ url_for('static', filename='js/FilaInventory.js') }}"></script>
+        {% elif inv_type == 'Tabela Hash' %}
+            <script src="{{ url_for('static', filename='js/TabelaHashInventory.js') }}"></script>
         {% endif %}
 
     <script src="{{ url_for('static', filename='js/ui_controller.js') }}"></script>
